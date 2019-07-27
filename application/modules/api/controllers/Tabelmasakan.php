@@ -20,7 +20,11 @@ function getdata(){
   if(isset($_GET['jenis_makanan'])){
     $jenis_makanan = $_GET['jenis_makanan'];
     $loadDb = $this->db->query("SELECT * FROM tabel_masakan where jenis_makanan = '$jenis_makanan' ORDER BY nama_masakan ASC");
-  } else{
+  }elseif (isset($_GET['nama_masakan'])) {
+    $nama_masakan = $_GET['nama_masakan'];
+    $loadDb = $this->db->query("SELECT * FROM tabel_masakan where nama_masakan like '%$nama_masakan%' ORDER BY nama_masakan ASC");
+  }
+  else{
         $loadDb = $this->db->query("SELECT * FROM tabel_masakan ORDER BY nama_masakan ASC");
   }
 
